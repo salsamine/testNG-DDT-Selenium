@@ -1,24 +1,80 @@
-# TestNG + Assertions + Data-Driven Testing — Starter
+# TestNG + Selenium Data-Driven Testing
 
-Project ini adalah starter untuk assignment Test Runner dan Data Driven.
+Automation testing project for SauceDemo login functionality using Selenium, TestNG, and Data-Driven Testing (DDT).
 
-## Target
-- Integrate TestNG
-- Hard Assert
-- Soft Assert
-- Selenium login test
-- Read test data from Excel using Apache POI
-- TestNG DataProvider
-- testng.xml
+## Tech Stack
 
-## TODO
-1. Lengkapi dependencies di pom.xml.
-2. Buat login test dengan Selenium.
-3. Buat Hard Assert.
-4. Buat Soft Assert + assertAll().
-5. Buat login-data.xlsx di `src/test/resources/testdata/`.
-6. Implementasikan Excel reader dengan Apache POI.
-7. Hubungkan Excel reader ke @DataProvider.
-8. Jalankan melalui `testng.xml`.
+- Java 17
+- Maven
+- Selenium WebDriver
+- TestNG
+- Apache POI
+- Microsoft Excel
 
-> Starter sengaja tidak memberikan implementation lengkap agar student dapat mengerjakan bagian assignment sendiri.
+## Test Scenarios
+
+This project contains the following test scenarios:
+
+1. Hard Assertion
+2. Soft Assertion
+3. Data-Driven Login Test
+    - Valid username and password → SUCCESS
+    - Invalid username → INVALID_USERNAME
+    - Invalid password → INVALID_PASSWORD
+
+## Data-Driven Testing
+
+Test data is stored in:
+
+`src/test/resources/testdata/login-data.xlsx`
+
+The Excel file contains:
+
+| Test Case | Username | Password | Expected Result |
+|-----------|----------|----------|-----------------|
+| TC001 | standard_user | secret_sauce | SUCCESS |
+| TC002 | 123 | secret_sauce | INVALID_USERNAME |
+| TC003 | visual_user | 123 | INVALID_PASSWORD |
+
+Test data is read using Apache POI and supplied to the test method using TestNG `@DataProvider`.
+
+## Project Structure
+
+```text
+testng-ddt-starter/
+├── src/
+│   └── test/
+│       ├── java/
+│       │   ├── tests/
+│       │   │   └── LoginTest.java
+│       │   └── utils/
+│       │       └── ExcelReader.java
+│       └── resources/
+│           └── testdata/
+│               └── login-data.xlsx
+├── docs_testNG_DDT_assignment/
+│   └── test-result.png
+├── pom.xml
+└── testng.xml
+```
+
+## How to Run
+
+1. Clone this repository.
+2. Open the `testng-ddt-starter` folder as a Maven project.
+3. Make sure Java 17 is installed.
+4. Install/download Maven dependencies from `pom.xml`.
+5. Run `testng.xml`.
+
+## Test Result
+
+The TestNG suite successfully executed:
+
+- Total Tests: 5
+- Passed: 5
+- Failed: 0
+- Skipped: 0
+
+The test execution includes 3 Data-Driven Login Test scenarios, Hard Assertion, and Soft Assertion.
+
+![TestNG Test Result](docs_testNG_DDT_assignment/test-result.png)
